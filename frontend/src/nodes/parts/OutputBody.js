@@ -1,5 +1,9 @@
+// OutputBody.js
+
 import { useState } from "react";
 import { useStore } from "../../store";
+import { Label } from "../../ui/Label";
+import { Input } from "../../ui/Input";
 
 export const OutputBody = ({ id, data }) => {
     const updateNodeField = useStore((s) => s.updateNodeField);
@@ -22,35 +26,23 @@ export const OutputBody = ({ id, data }) => {
     };
 
     return (
-        <div>
-            <div style={{ marginBottom: 8 }}>
-                <label style={{ fontSize: 12 }}>Name:</label>
-                <input
+        <div className="space-y-3">
+            <div className="space-y-1">
+                <Label>Name</Label>
+                <Input
                     type="text"
                     value={currName}
                     onChange={handleNameChange}
-                    style={{
-                        width: "100%",
-                        padding: "4px 6px",
-                        border: "1px solid #D0D5DD",
-                        borderRadius: 4,
-                        marginTop: 2,
-                    }}
+                    placeholder="output_name"
                 />
             </div>
 
-            <div>
-                <label style={{ fontSize: 12 }}>Type:</label>
+            <div className="space-y-1">
+                <Label>Type</Label>
                 <select
                     value={outputType}
                     onChange={handleTypeChange}
-                    style={{
-                        width: "100%",
-                        padding: "4px 6px",
-                        border: "1px solid #D0D5DD",
-                        borderRadius: 4,
-                        marginTop: 2,
-                    }}
+                    className="w-full rounded-md border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-vsPrimary focus:border-transparent"
                 >
                     <option value="Text">Text</option>
                     <option value="Image">Image</option>

@@ -1,16 +1,28 @@
-import { PipelineToolbar } from './toolbar';
-import { PipelineUI } from './ui';
-import { SubmitButton } from './submit';
+import { TopNav } from "./TopNav";
+import { NodeToolbar } from "./NodeToolbar";
+import { PipelineUI } from "./ui";
+import { SubmitButton } from "./submit";
 
 function App() {
   return (
-    <div>
-      <div className="bg-red-500 text-white p-4">
-        Tailwind is working!
+    <div className="w-screen h-screen flex flex-col">
+
+      {/* TOP NAVIGATION */}
+      <TopNav />
+
+      {/* HORIZONTAL NODE TOOLBAR */}
+      <NodeToolbar />
+
+      {/* CANVAS */}
+      <div className="flex-1 overflow-hidden">
+        <PipelineUI />
       </div>
-      <PipelineToolbar />
-      <PipelineUI />
-      <SubmitButton />
+
+      {/* SUBMIT BUTTON */}
+      <div className="border-t p-3 bg-white">
+        <SubmitButton />
+      </div>
+
     </div>
   );
 }

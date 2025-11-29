@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useStore } from "../../store";
+import { Label } from "../../ui/Label";
+import { Input } from "../../ui/Input";
 
 export const DelayBody = ({ id, data }) => {
     const updateNodeField = useStore((s) => s.updateNodeField);
-
     const [delay, setDelay] = useState(data?.delay || 1000);
 
     const handleChange = (e) => {
@@ -13,19 +14,15 @@ export const DelayBody = ({ id, data }) => {
     };
 
     return (
-        <div>
-            <label style={{ fontSize: 12 }}>Delay (ms):</label>
-            <input
+        <div className="space-y-2">
+            <Label>Delay (ms)</Label>
+
+            <Input
                 type="number"
                 value={delay}
                 onChange={handleChange}
-                style={{
-                    width: "100%",
-                    padding: "4px 6px",
-                    border: "1px solid #D0D5DD",
-                    borderRadius: 4,
-                    marginTop: 2,
-                }}
+                min={0}
+                placeholder="1000"
             />
         </div>
     );

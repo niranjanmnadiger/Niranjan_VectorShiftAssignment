@@ -1,13 +1,12 @@
 import { InputBody } from "./parts/InputBody";
 import { OutputBody } from "./parts/OutputBody";
-import { LLMBody } from "./parts/LLMBody";
 import { TextBody } from "./parts/TextBody";
 import { MathBody } from "./parts/MathBody";
 import { ConditionBody } from "./parts/ConditionBody";
 import { FormatBody } from "./parts/FormatBody";
 import { LoggerBody } from "./parts/LoggerBody";
 import { DelayBody } from "./parts/DelayBody";
-
+import LLMBody from "./parts/LLMBody";
 
 export const NODE_CONFIGS = {
     input: {

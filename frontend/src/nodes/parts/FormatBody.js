@@ -1,5 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useStore } from "../../store";
+import { Label } from "../../ui/Label";
+import { Textarea } from "../../ui/Textarea";
 
 export const FormatBody = ({ id, data }) => {
     const updateNodeField = useStore((s) => s.updateNodeField);
@@ -15,18 +17,13 @@ export const FormatBody = ({ id, data }) => {
     };
 
     return (
-        <div>
-            <label style={{ fontSize: 12 }}>Template:</label>
-            <textarea
+        <div className="space-y-2">
+            <Label>Template</Label>
+
+            <Textarea
                 value={template}
                 onChange={handleChange}
-                style={{
-                    width: "100%",
-                    minHeight: 40,
-                    border: "1px solid #D0D5DD",
-                    borderRadius: 4,
-                    padding: 6,
-                }}
+                placeholder="Hello {{name}}"
             />
         </div>
     );

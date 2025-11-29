@@ -1,8 +1,6 @@
-//If input1 > input2 ----> output "true", else "false"
-//conditoinal 
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { useStore } from "../../store";
+import { Label } from "../../ui/Label";
 
 export const ConditionBody = ({ id, data }) => {
     const updateNodeField = useStore((s) => s.updateNodeField);
@@ -15,18 +13,13 @@ export const ConditionBody = ({ id, data }) => {
     };
 
     return (
-        <div>
-            <label style={{ fontSize: 12 }}>Condition:</label>
+        <div className="space-y-2">
+            <Label>Condition</Label>
+
             <select
                 value={operator}
                 onChange={handleChange}
-                style={{
-                    width: "100%",
-                    padding: "4px 6px",
-                    border: "1px solid #D0D5DD",
-                    borderRadius: 4,
-                    marginTop: 2,
-                }}
+                className="w-full rounded-md border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-vsPrimary focus:border-transparent"
             >
                 <option value=">">A &gt; B</option>
                 <option value="<">A &lt; B</option>
