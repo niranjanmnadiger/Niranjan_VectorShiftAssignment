@@ -26,7 +26,11 @@ export const OutputNode = (props) => {
       </BaseNode>
 
       {/* Output Handle (optional – keep it for future use maybe- where u will take this OP as IP for some other thingy)*/}
-
+      <Handle
+        type="source"
+        position={Position.Right}
+        className="!w-3 !h-3 !bg-vsPrimary border-2 border-white rounded-full shadow"
+      />
     </div>
   );
 };

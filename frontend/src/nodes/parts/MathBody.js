@@ -16,19 +16,27 @@ export const MathBody = ({ id, data }) => {
     };
 
     return (
-        <div className="space-y-2">
-            <Label>Operation</Label>
+        <div className="space-y-2 text-sm">
+            <div className="flex justify-between text-[11px] text-gray-500">
+                <span>Input A = top-left handle & Input B = bottom-left handle</span>
 
-            <select
-                value={operation}
-                onChange={handleOpChange}
-                className="w-full rounded-md border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-vsPrimary focus:border-transparent"
-            >
-                <option value="add">Add</option>
-                <option value="sub">Subtract</option>
-                <option value="mul">Multiply</option>
-                <option value="div">Divide</option>
-            </select>
+            </div>
+
+            <div className="space-y-1">
+                <Label>Operation</Label>
+                <select
+                    value={operation}
+                    onChange={handleOpChange}
+                    className="w-full rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm shadow-sm focus:ring-vsPrimary focus:border-vsPrimary"
+                >
+                    <option value="add">ADD (A + B)</option>
+                    <option value="sub">SUBTRACT (A − B)</option>
+                    <option value="mul">MULTIPLY (A × B)</option>
+                    <option value="div">DIVIDE (A ÷ B)</option>
+                </select>
+            </div>
+
+
         </div>
     );
 };

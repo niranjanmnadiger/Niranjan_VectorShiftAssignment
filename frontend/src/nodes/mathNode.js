@@ -11,19 +11,35 @@ export const MathNode = (props) => {
 
     return (
         <div className="relative">
+
+
             {/* Input Handle */}
             <Handle
                 type="target"
+                id="input_a"
                 position={Position.Left}
                 className="!w-3 !h-3 !bg-vsPrimary border-2 border-white rounded-full shadow"
+                style={{ top: "35%" }} // push down a bit
+            />
+
+            <Handle
+                type="target"
+                id="input_b"
+                position={Position.Left}
+                className="!w-3 !h-3 !bg-vsPrimary border-2 border-white rounded-full shadow"
+                style={{ top: "65%" }} // lower than A
             />
 
             <BaseNode
                 title={NODE_CONFIGS.math.title}
                 selected={selected}
             >
+
                 <MathBody id={id} data={data} />
+
             </BaseNode>
+
+
 
             {/* Output Handle */}
             <Handle
