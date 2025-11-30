@@ -131,6 +131,12 @@ export const PipelineUI = () => {
             nodeStrokeColor="#555"
             nodeColor="#999"
             nodeBorderRadius={4}
+            style={{
+              bottom: 100,
+              right: 16,
+              width: 180,
+              height: 120,
+            }}
           />
         </ReactFlow>
       </div>

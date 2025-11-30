@@ -8,8 +8,18 @@ function App() {
     <div className="w-full min-h-screen flex flex-col bg-white">
       <TopNav />
       <NodeToolbar />
-      <PipelineUI />
-      <SubmitButton />
+
+
+
+      {/* Right Canvas + Submit */}
+      <div className="flex-1 relative">
+        <PipelineUI />
+
+        {/* Submit Button pinned bottom-right */}
+        <div className="absolute bottom-6 right-6 z-50">
+          <SubmitButton />
+        </div>
+      </div>
     </div>
   );
 }
