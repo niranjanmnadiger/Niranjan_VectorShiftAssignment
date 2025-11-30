@@ -125,7 +125,10 @@ export const PipelineUI = () => {
             gap={gridSize}
             size={1}
           />
-          <Controls position="bottom-left" />
+          <Controls
+            position="bottom-left"
+            style={{ bottom: 80, left: 10 }}
+          />
           <MiniMap
             className="rounded-lg shadow-md bg-white"
             nodeStrokeColor="#555"

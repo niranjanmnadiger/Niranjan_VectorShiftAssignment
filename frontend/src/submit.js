@@ -1,45 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStore } from "./store";
+import { StatusModal } from "./StatusModal";
 
-// Core function that talks to backend
-export async function submitPipeline() {
-    const nodes = useStore.getState().nodes;
-    const edges = useStore.getState().edges;
+// Helper that talks to backend
+async function submitPipeline(nodes, edges) {
+    const res = await fetch("http://localhost:8000/pipelines/parse", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nodes, edges }),
+    });
 
-    try {
-        const res = await fetch("http://localhost:8000/pipelines/parse", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nodes, edges }),
-        });
-
-        const data = await res.json();
-
-        alert(`
-Pipeline Summary:
-
-Nodes   : ${data.num_nodes}
-Edges   : ${data.num_edges}
-Is DAG? : ${data.is_dag ? "Yes" : "No, contains cycles"}
-    `);
-    } catch (err) {
-        console.error("Error submitting pipeline:", err);
-        alert("Something went wrong while connecting to backend.");
+    if (!res.ok) {
+        throw new Error(`Backend error: ${res.status}`);
     }
+
+    const data = await res.json();
+    return data; // { num_nodes, num_edges, is_dag }
 }
 
-// Button component expected by App.js
+// Button + Modal component
 export function SubmitButton() {
-    const handleClick = () => {
-        submitPipeline();
+    const nodes = useStore((state) => state.nodes);
+    const edges = useStore((state) => state.edges);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [result, setResult] = useState(null);
+
+    const handleClick = async () => {
+        if (nodes.length === 0) return; // button already disabled, extra guard
+
+        try {
+            setIsSubmitting(true);
+            const data = await submitPipeline(nodes, edges);
+            setResult(data);
+            setModalOpen(true);
+        } catch (err) {
+            console.error("Error submitting pipeline:", err);
+            window.alert("Something went wrong while connecting to backend.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
+    const disabled = nodes.length === 0 || isSubmitting;
+
     return (
-        <button
-            onClick={handleClick}
-            className="px-4 py-2 bg-vsPrimary text-white rounded-lg text-sm font-medium hover:opacity-90 transition"
-        >
-            Submit Pipeline
-        </button>
+        <>
+            <button
+                onClick={handleClick}
+                disabled={disabled}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition
+          ${disabled
+                        ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                        : "bg-vsPrimary text-white hover:opacity-90"
+                    }`}
+                title={nodes.length === 0 ? "Add at least one node to submit" : ""}
+            >
+                {isSubmitting ? "Submitting..." : "Submit Pipeline"}
+            </button>
+
+            <StatusModal
+                open={modalOpen}
+                result={result}
+                onClose={() => setModalOpen(false)}
+            />
+        </>
     );
 }

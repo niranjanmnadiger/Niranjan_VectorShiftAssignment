@@ -1,3 +1,5 @@
+// LLMBody.jsx
+
 import React from "react";
 import { Input } from "../../ui/Input";
 import { Label } from "../../ui/Lable";
@@ -5,15 +7,14 @@ import { Textarea } from "../../ui/Textarea";
 
 function LLMBody({ data, onChange }) {
     const update = (key, value) => {
-        onChange({
+        onChange?.({
             ...data,
-            [key]: value
+            [key]: value,
         });
     };
 
     return (
         <div className="space-y-4">
-
             {/* Model Selector */}
             <div className="space-y-1">
                 <Label>Model</Label>
