@@ -6,20 +6,34 @@ function BaseNode({ title, children, selected }) {
     return (
         <div
             className={cn(
-                "relative",
+                "relative w-full h-auto", // allow node to expand
                 selected && "ring-2 ring-vsPrimary ring-offset-2 rounded-xl"
             )}
         >
-            <Card className="p-4 min-w-[240px] bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
+            <Card
+                className="
+          p-4
+          min-w-[240px]
+          w-full
+          h-auto                     /* critical: allow height expansion */
+          bg-white
+          rounded-xl
+          border border-gray-200
+          shadow-sm hover:shadow-md
+          transition-all
+          flex flex-col              /* stack children vertically */
+          gap-3                      /* spacing without breaking layout */
+        "
+            >
                 {title && (
-                    <div className="mb-3 flex justify-between items-center">
+                    <div className="flex justify-between items-center">
                         <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                             {title}
                         </span>
                     </div>
                 )}
 
-                <div className="space-y-3 text-sm text-gray-700">
+                <div className="w-full h-auto">
                     {children}
                 </div>
             </Card>
