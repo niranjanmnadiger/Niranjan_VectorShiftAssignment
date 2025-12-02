@@ -1,4 +1,4 @@
-// BaseNode.js - Updated with proper height handling
+// BaseNode.js 
 
 import React from "react";
 import { Card } from "../ui/Card";

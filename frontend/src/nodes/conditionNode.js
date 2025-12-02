@@ -11,9 +11,18 @@ export const ConditionNode = (props) => {
         <div className="relative">
             {/* Input Handle */}
             <Handle
+                id="in-a"
                 type="target"
                 position={Position.Left}
                 className="!w-3 !h-3 !bg-vsPrimary border-2 border-white rounded-full shadow"
+                style={{ top: "35%" }}
+            />
+            <Handle
+                id="in-b"
+                type="target"
+                position={Position.Left}
+                className="!w-3 !h-3 !bg-vsPrimary border-2 border-white rounded-full shadow"
+                style={{ top: "65%" }}
             />
 
             <BaseNode

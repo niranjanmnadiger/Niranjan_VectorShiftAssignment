@@ -39,7 +39,7 @@ export const NODE_CONFIGS = {
     text: {
         title: "Text",
         color: "#ea580c",
-        inputs: [],                      // will become dynamic in Task 3
+        inputs: [],
         outputs: [{ id: "output", label: "Output" }],
         Body: TextBody,
     },
